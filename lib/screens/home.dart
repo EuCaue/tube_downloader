@@ -7,6 +7,7 @@ import 'package:tube_downloader/widgets/custom_app_bar.dart';
 import 'package:tube_downloader/widgets/custom_drawer.dart';
 import 'package:tube_downloader/widgets/search_field.dart';
 import 'package:tube_downloader/widgets/youtube_video.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:youtube_explode_dart/youtube_explode_dart.dart';
 
 class HomePage extends StatefulWidget {
@@ -22,7 +23,7 @@ class _HomePageState extends State<HomePage> {
 
   bool isLoadingDownloading = false;
   bool isLoadingSearch = false;
-  String _videoFormat = "mp3";
+  String _videoFormat = "mp4";
   int downloadVideoPercentage = 0;
 
   YoutubeVideoItem youtubeVideo = YoutubeVideoItem(
@@ -42,7 +43,7 @@ class _HomePageState extends State<HomePage> {
     // NOTE: Android does not support the downloads dir
 
     if (Platform.isAndroid) {
-      downloadsPathDir = "/storage/emulated/0/Download/";
+      downloadsPathDir = "/storage/emulated/0/Download";
       logger.d(downloadsPathDir);
     }
 
@@ -80,14 +81,26 @@ class _HomePageState extends State<HomePage> {
       logger.d("Youtube Video Downloaded Successfully");
       // ignore: use_build_context_synchronously
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        width: 275,
+        width: 625,
         behavior: SnackBarBehavior.floating,
         dismissDirection: DismissDirection.horizontal,
+        action: SnackBarAction(
+          // ignore: use_build_context_synchronously
+          textColor: Colors.white,
+          label: "Open Folder",
+          onPressed: () async {
+            final Uri url = Uri.parse('file:///$downloadsPathDir/');
+            if (!await launchUrl(url)) {
+              throw Exception('Could not launch $url');
+            }
+          },
+        ),
         content: Text(
           "${youtubeVideo.title} Downloaded Successfully in $downloadsPathDir !",
           style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         ),
       ));
+      logger.d("$downloadsPathDir/${youtubeVideo.title}.$_videoFormat");
     } catch (e) {
       logger.e("Youtube  Error: $e");
     } finally {
@@ -130,9 +143,9 @@ class _HomePageState extends State<HomePage> {
                   ) /
                   100,
             )
-          : const Text(
-              "Download video",
-              style: TextStyle(
+          : Text(
+              "Download ${_videoFormat == "mp4" ? "video" : "audio"}",
+              style: const TextStyle(
                 fontSize: 22,
                 color: Color(0xFFFFFFFF),
               ),
