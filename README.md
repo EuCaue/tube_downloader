@@ -1,16 +1,29 @@
-# Tube Downloader 
+# Tube Downloader
 
-A new Flutter project.
+Download video from YouTube with ease.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+This is a minimalistic, simple and fast downloader for YouTube videos,
+that supports both MP4 and MP3 formats.
 
-A few resources to get you started if this is your first Flutter project:
+## How to use
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Download from release page in [here](https://github.com/EuCaue/tube_downloader/releases).
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Preview
+
+<details>
+<summary>
+        Desktop
+</summary>
+        <img src="./assets/app_mobile.png" alt="tube_downloader" height="500" />
+</details>
+<br/>
+
+<details>
+<summary>
+       Mobile 
+</summary>
+        <img src="./assets/app_desktop.png" alt="tube_downloader" height="500" />
+</details>
