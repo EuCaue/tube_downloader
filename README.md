@@ -17,13 +17,14 @@ Download from release page in [here](https://github.com/EuCaue/tube_downloader/r
 <summary>
         Desktop
 </summary>
-        <img src="./assets/app_mobile.png" alt="tube_downloader" height="500" />
+        <img src="https://github.com/EuCaue/tube_downloader/assets/69485603/474fc190-f886-4f40-9573-644474b91f08" alt="tube_downloader" height="500" />
 </details>
 <br/>
+
 
 <details>
 <summary>
        Mobile 
 </summary>
-        <img src="./assets/app_desktop.png" alt="tube_downloader" height="500" />
+        <img src="https://github.com/EuCaue/tube_downloader/assets/69485603/fb2e21de-adca-4771-8df7-aa9ca1259f56" alt="tube_downloader" height="500" />
 </details>
