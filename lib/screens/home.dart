@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:logger/logger.dart';
 import 'package:flutter/material.dart';
+import 'package:open_filex/open_filex.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:tube_downloader/models/youtube_video_item.dart';
 import 'package:tube_downloader/widgets/custom_app_bar.dart';
@@ -78,21 +79,21 @@ class _HomePageState extends State<HomePage> {
         fileStream.add(data);
       }
       await fileStream.close();
+
+      double screenWidth = MediaQuery.of(context).size.width;
       logger.d("Youtube Video Downloaded Successfully");
       // ignore: use_build_context_synchronously
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        width: 625,
+        width: screenWidth * 0.9,
         behavior: SnackBarBehavior.floating,
         dismissDirection: DismissDirection.horizontal,
         action: SnackBarAction(
           // ignore: use_build_context_synchronously
-          textColor: Colors.white,
+          textColor: Theme.of(context).colorScheme.primary,
           label: "Open Folder",
-          onPressed: () async {
-            final Uri url = Uri.parse('file:///$downloadsPathDir/');
-            if (!await launchUrl(url)) {
-              throw Exception('Could not launch $url');
-            }
+          onPressed: () {
+            OpenFilex.open("$downloadsPathDir/");
+            logger.d("down: $downloadsPathDir/");
           },
         ),
         content: Text(
@@ -125,12 +126,14 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  FilledButton downloadButton() {
+  FilledButton downloadButton(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+
     return FilledButton(
       onPressed: downloadVideo,
       style: FilledButton.styleFrom(
         padding: const EdgeInsets.all(8),
-        fixedSize: const Size(190, 50),
+        minimumSize: const Size(190, 50),
         visualDensity: const VisualDensity(horizontal: 1),
         enabledMouseCursor: SystemMouseCursors.click,
         textStyle: const TextStyle(fontWeight: FontWeight.bold),
@@ -146,7 +149,7 @@ class _HomePageState extends State<HomePage> {
           : Text(
               "Download ${_videoFormat == "mp4" ? "video" : "audio"}",
               style: const TextStyle(
-                fontSize: 22,
+                fontSize: 20,
                 color: Color(0xFFFFFFFF),
               ),
             ),
@@ -173,7 +176,7 @@ class _HomePageState extends State<HomePage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  downloadButton(),
+                  downloadButton(context),
                   SizedBox(width: MediaQuery.of(context).size.width / 30),
                   dropdownFormatVideo(context)
                 ],
