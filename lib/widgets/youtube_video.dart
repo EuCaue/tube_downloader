@@ -36,7 +36,6 @@ class YoutubeVideo extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Container(
-          // width: MediaQuery.of(context).size.width * 1.2,
           decoration: BoxDecoration(
             color: Theme.of(context).colorScheme.surface,
             border: Border.all(color: Theme.of(context).colorScheme.onSurface),
@@ -112,7 +111,6 @@ class YoutubeVideo extends StatelessWidget {
     );
   }
 
-
   Column titleAndDurationMobile(BuildContext context) {
     return Column(
       children: <Widget>[
@@ -141,39 +139,4 @@ class YoutubeVideo extends StatelessWidget {
       ],
     );
   }
-
-  // Column titleAndDuration(BuildContext context) {
-  //   bool isDefaultView = MediaQuery.of(context).size.width > 600;
-  //   return Column(
-  //     // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //     children: <Widget>[
-  //       Container(
-  //         width: isDefaultView ? 200 : null,
-  //         margin: const EdgeInsets.only(top: 20.0, left: 8.0),
-  //         child: Text(
-  //           youtubeVideo.title,
-  //           textAlign: TextAlign.center,
-  //           style: const TextStyle(
-  //             fontSize: 24,
-  //             fontWeight: FontWeight.w600,
-  //           ),
-  //         ),
-  //       ),
-  //       isDefaultView
-  //           ? SizedBox(height: MediaQuery.of(context).size.height / 6)
-  //           : Container(),
-  //       Container(
-  //         margin: const EdgeInsets.only(top: 20),
-  //         child: Text(
-  //           "Duration: ${formatDuration(youtubeVideo.duration!)}",
-  //           textAlign: TextAlign.center,
-  //           style: const TextStyle(
-  //             fontSize: 22,
-  //             fontWeight: FontWeight.w500,
-  //           ),
-  //         ),
-  //       ),
-  //     ],
-  //   );
-  // }
 }

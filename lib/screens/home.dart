@@ -127,7 +127,6 @@ class _HomePageState extends State<HomePage> {
   }
 
   FilledButton downloadButton(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
 
     return FilledButton(
       onPressed: downloadVideo,
